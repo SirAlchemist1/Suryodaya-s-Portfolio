@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suryodaya Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div id="matrix-effect"></div>
+        <div id="loading-text"></div>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <div id="scroll-progress"></div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <div id="user-time"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="reveal">
+            <div id="home-particles"></div>
+            <div class="container">
+                <div class="home-content">
+                    <h1 class="name">
+                        <span class="animate-text">SURYODAYA</span>
+                        <span class="animate-text">BIKRAM</span>
+                        <span class="animate-text">SHAHI</span>
+                    </h1>
+                    <div class="tagline">
+                        <span class="animate-text">Data Scientist</span>
+                        <span class="animate-text">AI Enthusiast</span>
+                    </div>
+                    <p class="motto animate-text">Transforming Data into Insights</p>
+                    <div class="cta-buttons">
+                        <a href="#about" class="btn primary-btn animate-btn">Explore My Work</a>
+                        <a href="#contact" class="btn secondary-btn animate-btn">Get in Touch</a>
+                        <a href="/Users/jarvis/Portfolio/Resume.pdf" class="btn download-btn animate-btn" download>
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="#" target="_blank" class="animate-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank" class="animate-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" class="animate-icon"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="reveal">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="/Users/jarvis/Portfolio/images/profilepic-image.jpg" alt="Suryodaya Bikram Shahi">
+                    </div>
+                    <div class="about-text">
+                        <p>Hello! I'm Suryodaya Bikram Shahi, a passionate Data Scientist and AI enthusiast. I'm currently pursuing my Master's in Data Science at the University of Maryland, Baltimore County. With a strong foundation in computer science and a keen interest in cutting-edge technologies, I'm dedicated to pushing the boundaries of what's possible in the world of data and AI.</p>
+                        <p>My journey in tech has been driven by a desire to solve complex problems and create innovative solutions. From developing machine learning models to contributing to groundbreaking research, I'm always eager to take on new challenges and expand my skillset.</p>
+                    </div>
+                </div>
+                <div class="about-cards">
+                    <div class="flip-card" data-aos="fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="fas fa-brain"></i>
+                                <h3>Expertise</h3>
+                            </div>
+                            <div class="flip-card-back">
+                                <ul>
+                                    <li>ML & AI</li>
+                                    <li>Data Science</li>
+                                    <li>Software Development</li>
+                                    <li>Business Development & Execution (BDE)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="fas fa-book"></i>
+                                <h3>Publication</h3>
+                            </div>
+                            <div class="flip-card-back">
+                                <h4>Deep Learning Methods for Vehicle Trajectory Prediction</h4>
+                                <p>ICICNIS, 2023</p>
+                                <ul>
+                                    <li>Co-authored paper on deep learning and IoT integration for autonomous vehicles.</li>
+                                    <li>DOI: 10.1007/978-981-99-6586-1</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="fas fa-rocket"></i>
+                                <h3>Startup Experience</h3>
+                            </div>
+                            <div class="flip-card-back">
+                                <h4>Kaushala - EdTech Startup</h4>
+                                <p>Co-Founder & CTO</p>
+                                <ul>
+                                    <li>Launched a K-12 ed-tech platform, merging online and offline learning in Nepal.</li>
+                                    <li>Flagship course teaching financial literacy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="reveal">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="university-logo">
+                                    <img src="/Users/jarvis/Portfolio/images/umd_logo.png" alt="University of Maryland Logo">
+                                </div>
+                                <h3>University of Maryland, College Park</h3>
+                                <p>M.S. in Data Science</p>
+                                <p>Expected Graduation: May 2026</p>
+                                <span class="flip-icon"><i class="fas fa-redo"></i> Flip for details</span>
+                            </div>
+                            <div class="card-back">
+                                <h4>Concentrations: Data Science</h4>
+                                <h5>Relevant Coursework:</h5>
+                                <ul>
+                                    <li>Data Science</li>
+                                    <li>Probability Statistics</li>
+                                    <li>Machine Learning</li>
+                                    <li>Natural Language Processing (NLP)</li>
+                                    <li>Data Representation and Modeling</li>
+                                    <li>Communication in Data Science and Analytics</li>
+                                    <li>Big Data Systems</li>
+                                    <li>Algorithms for Data Science</li>
+                                </ul>
+                                <span class="flip-icon"><i class="fas fa-redo"></i> Flip back</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="university-logo">
+                                    <img src="/Users/jarvis/Portfolio/images/dtu_logo.png" alt="Delhi Technological University Logo">
+                                </div>
+                                <h3>Delhi Technological University</h3>
+                                <p>B.Tech in Software Engineering</p>
+                                <p>Graduated: May 2023</p>
+                                <p>GPA: 8.22/10.0</p>
+                                <span class="flip-icon"><i class="fas fa-redo"></i> Flip for details</span>
+                            </div>
+                            <div class="card-back">
+                                <h4>Relevant Coursework:</h4>
+                                <ul>
+                                    <li>Software Engineering</li>
+                                    <li>Computer Networks</li>
+                                    <li>Database Management</li>
+                                    <li>Web Development</li>
+                                    <li>Operating Systems</li>
+                                </ul>
+                                <span class="flip-icon"><i class="fas fa-redo"></i> Flip back</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="reveal">
+            <div class="container">
+                <h2>Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <h3>Research Intern</h3>
+                            <h4>Macquarie University, Sydney, Australia</h4>
+                            <p class="timeline-date">July 2022 – October 2023</p>
+                            <ul>
+                                <li>Optimized data pipeline for large-scale, multilingual meme dataset, significantly reducing processing times.</li>
+                                <li>Applied advanced ML models (BERT, VGG19, ResNet50) to classify over 5,000 memes.</li>
+                                <li>Improved detection of hateful and malicious memes by 40% using multimodal approaches.</li>
+                                <li>Collaborated on enhancing online content moderation systems for safer social media platforms.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <h3>IT Intern</h3>
+                            <h4>Nepal Electricity Authority, Kathmandu, Nepal</h4>
+                            <p class="timeline-date">May 2022 – July 2022</p>
+                            <ul>
+                                <li>Revolutionized inventory management systems using AI and ML techniques.</li>
+                                <li>Improved process efficiency by 50% through predictive analytics.</li>
+                                <li>Developed and tested AI models for accurate demand forecasting and resource allocation.</li>
+                                <li>Enhanced internal operations and customer services through data-driven insights.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="reveal">
+            <div class="container">
+                <h2>Current Projects</h2>
+                <p class="projects-intro">Explore my latest endeavors in AI and data science. These projects showcase my passion for innovative solutions and cutting-edge technologies.</p>
+                <div class="project-grid">
+                    <div class="project-card" data-project="kancha">
+                        <div class="project-image" style="background-image: url('/Users/jarvis/Portfolio/images/Chatbot.jpg');"></div>
+                        <div class="project-info">
+                            <h3>Kancha VA</h3>
+                            <p>A Nepali virtual assistant powered by AI</p>
+                            <button class="btn project-btn">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="moodtune">
+                        <div class="project-image" style="background-image: url('/Users/jarvis/Portfolio/images/MoodTunes Logo.png');"></div>
+                        <div class="project-info">
+                            <h3>Moodtune</h3>
+                            <p>Your personal playlist curator</p>
+                            <button class="btn project-btn">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="reveal">
+            <div id="skills-particles"></div>
+            <div class="container">
+                <h2>My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-hex" data-category="programming">
+                        <div class="hexagon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Programming Languages</h3>
+                    </div>
+                    <div class="skill-hex" data-category="datascience">
+                        <div class="hexagon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Data Science & ML</h3>
+                    </div>
+                    <div class="skill-hex" data-category="tools">
+                        <div class="hexagon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Tools & Technologies</h3>
+                    </div>
+                    <div class="skill-hex" data-category="software">
+                        <div class="hexagon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Software Development</h3>
+                    </div>
+                    <div class="skill-hex" data-category="research">
+                        <div class="hexagon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Research & Analysis</h3>
+                    </div>
+                    <div class="skill-hex" data-category="collaboration">
+                        <div class="hexagon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Collaboration & Leadership</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="skill-details" class="skill-details">
+                <h3 id="skill-category-title"></h3>
+                <ul id="skill-list"></ul>
+                <button id="close-skill-details">&times;</button>
+            </div>
+        </section>
+
+        <section id="awards" class="reveal">
+            <div class="container">
+                <h2 class="section-title">Awards & Recognition</h2>
+                <div class="awards-container">
+                    <div class="award-card" data-aos="fade-up">
+                        <div class="award-image">
+                            <img src="/Users/jarvis/Portfolio/images/iccr-indian-council-for-cultural-relations-logo-548247B54C-seeklogo.com.png" alt="ICCR Scholar">
+                        </div>
+                        <div class="award-content">
+                            <div class="award-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3>ICCR Scholar</h3>
+                            <h4>Indian Council for Cultural Relations (ICCR)</h4>
+                            <p>Full scholarship for B.Tech in Software Engineering at Delhi Technological University</p>
+                            <div class="award-details">
+                                <p>Recognized for academic excellence and leadership potential</p>
+                                <p>Year: 2019</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="award-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="award-image">
+                            <img src="/Users/jarvis/Portfolio/images/PBWC.png" alt="Volunteer Educator">
+                        </div>
+                        <div class="award-content">
+                            <div class="award-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3>Volunteer Educator</h3>
+                            <h4>Peace and Beautiful Children Welfare (PBCW)</h4>
+                            <p>Taught computer science to underprivileged students at TORAN Navjeevan Secondary High School</p>
+                            <div class="award-details">
+                                <p>Contributed to improving lives through education</p>
+                                <p>Location: Bagdol-Lalitpur, Nepal</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="award-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="award-image">
+                            <img src="/Users/jarvis/Portfolio/images/IIT-Bombay-Mathematics-Olympiad-2024.jpg" alt="Gold Medalist">
+                        </div>
+                        <div class="award-content">
+                            <div class="award-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3>Gold Medalist</h3>
+                            <h4>TechFest, IIT Bombay</h4>
+                            <p>Secured Gold Medal in the Science Olympiad</p>
+                            <div class="award-details">
+                                <p>Demonstrated exceptional problem-solving skills and scientific aptitude</p>
+                                <p>Year: 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:sshahi20@umd.edu">sshahi20@umd.edu</a></p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:+16674457800">(667) 445-7800</a></p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <h3>LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/suryodaya-bikram-shahi" target="_blank">Suryodaya Bikram Shahi</a></p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <h3>GitHub</h3>
+                            <p><a href="https://github.com/SirAlchemist1" target="_blank">SirAlchemist1</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required>
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" required></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                            <button type="submit" class="btn primary-btn">
+                                Send Message
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Suryodaya Bikram Shahi. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <div id="floating-action-button">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <div class="modal" id="project-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <a id="modal-link" href="#" target="_blank" class="btn primary-btn">View on GitHub</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
