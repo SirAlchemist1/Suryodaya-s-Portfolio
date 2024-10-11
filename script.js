@@ -144,17 +144,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 function smoothScroll(target, duration) {
-    var targetElement = document.querySelector(target);
-    var targetPosition = targetElement.getBoundingClientRect().top;
-    var startPosition = window.pageYOffset;
-    var distance = targetPosition - startPosition;
-    var headerOffset = document.querySelector('header').offsetHeight;
-    var startTime = null;
+    const targetElement = document.querySelector(target);
+    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
 
     function animation(currentTime) {
         if (startTime === null) startTime = currentTime;
-        var timeElapsed = currentTime - startTime;
-        var run = ease(timeElapsed, startPosition, distance - headerOffset, duration);
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
         window.scrollTo(0, run);
         if (timeElapsed < duration) requestAnimationFrame(animation);
     }
@@ -418,6 +417,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Add this: Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!nav.contains(event.target) && !burger.contains(event.target) && nav.classList.contains('active')) {
+            nav.classList.remove('active');
+            burger.classList.remove('active');
+            navLinks.forEach(link => {
+                link.style.animation = '';
+            });
+        }
+    });
+
     // Contact Form Submission
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', function(e) {
@@ -642,3 +652,18 @@ window.addEventListener('load', () => {
         }, 100);
     }
 });
+
+function initParticles() {
+    const particleConfig = {
+        particles: {
+            number: { value: window.innerWidth < 768 ? 30 : 80 },
+            size: { value: window.innerWidth < 768 ? 2 : 3 },
+            // ... other particle configurations
+        },
+        // ... other configurations
+    };
+    particlesJS('particles-js', particleConfig);
+}
+
+window.addEventListener('resize', initParticles);
+initParticles();

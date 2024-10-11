@@ -423,9 +423,16 @@ h1, h2 {
     flex-direction: column;
 }
 
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+@media (hover: hover) and (pointer: fine) {
+    .project-card:hover {
+        transform: translateY(-10px);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .project-card:active {
+        transform: translateY(-5px);
+    }
 }
 
 .project-image {
@@ -547,8 +554,8 @@ h1, h2 {
     }
     
     .modal-content {
-        width: 95%;
-        margin: 10% auto;
+        width: 90%;
+        padding: 15px;
     }
 }
 
@@ -1242,20 +1249,13 @@ h1, h2, h3 {
 
 @media (max-width: 768px) {
     .skills-grid {
-        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
     }
+}
 
-    .skill-hex {
-        width: 150px;
-    }
-
-    .hexagon {
-        width: 80px;
-        height: 92px;
-    }
-
-    .hexagon i {
-        font-size: 2rem;
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
     }
 }
 
