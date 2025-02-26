@@ -664,6 +664,5 @@ function initParticles() {
     };
     particlesJS('particles-js', particleConfig);
 }
-
 window.addEventListener('resize', initParticles);
 initParticles();
