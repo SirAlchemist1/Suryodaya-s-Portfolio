@@ -45,7 +45,7 @@ While this is a personal portfolio, I'm open to suggestions and improvements. Fe
 ## Contact
 
 - Email: sshahi20@umd.edu
-- Phone: (667) 445-7800
+- Phone: (667) XXX XXXX
 - LinkedIn: [Suryodaya Bikram Shahi](https://www.linkedin.com/in/suryodaya-bikram-shahi/)
 - GitHub: [SirAlchemist1](https://github.com/SirAlchemist1)
 
