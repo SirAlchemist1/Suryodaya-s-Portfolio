@@ -89,7 +89,17 @@ const skillsData = {
     tools: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'SQL', 'Jupyter Notebooks', 'Git'],
     software: ['Data Structures & Algorithms', 'Object-Oriented Programming', 'Software Project Management', 'Compiler Design'],
     research: ['Data Pipeline Optimization', 'Multimodal Data Integration', 'Comprehensive Literature Reviews'],
-    collaboration: ['Team Collaboration', 'Agile Methodologies', 'Start-up Development']
+    collaboration: ['Team Collaboration', 'Agile Methodologies', 'Start-up Development'],
+    // New advanced skills
+    'advanced-ml': [
+        'TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Hugging Face',
+        'VLMs', 'VLA pipelines', 'RLHF & DPO', 'CNNs', 'RNNs', 'Object Detection', 'NLP', 'LLMs', 'QLoRA/LoRA', 'GPT', 'Transformers', 'OpenCV', 'Evaluation & Benchmarking',
+        'Robotics & Computer Vision: ROS Noetic', 'Meta Aria SDK (Gen 1)', 'UFactory xArm6', 'Real-Time VLM/VLA Integration'
+    ],
+    'data-tools': [
+        'SQL (MySQL)', 'NoSQL (MongoDB)', 'Neo4j', 'Data Wrangling', 'Feature Engineering', 'Visualization',
+        'RESTful API Design', 'OOP', 'Agile Methodologies', 'Git/GitHub', 'Docker', 'PyCharm', 'Weights & Biases'
+    ]
 };
 
 const skillDetails = document.getElementById('skill-details');
@@ -666,3 +676,11 @@ function initParticles() {
 }
 window.addEventListener('resize', initParticles);
 initParticles();
+
+// After adding new timeline items, re-initialize AOS
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+}
