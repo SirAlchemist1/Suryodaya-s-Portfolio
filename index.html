@@ -38,6 +38,13 @@
                 <li><a href="#awards">Awards</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <!-- Dark Mode Toggle Button -->
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <svg class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <span class="theme-toggle-text">Dark</span>
+            </div>
             <div class="burger">
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -511,5 +518,52 @@
     </div>
 
     <script src="script.js"></script>
+    
+    <script>
+    // Dark mode functionality
+    function toggleTheme() {
+        const body = document.body;
+        const themeToggleText = document.querySelector('.theme-toggle-text');
+        const themeToggleIcon = document.querySelector('.theme-toggle-icon');
+        
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            themeToggleText.textContent = 'Dark';
+            themeToggleIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeToggleText.textContent = 'Light';
+            themeToggleIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="m12 1 0 6m0 6 0 6M4.22 4.22l1.42 1.42m11.72 11.72 1.42 1.42M1 12h6m6 0h6M4.22 19.78l1.42-1.42m11.72-11.72 1.42-1.42"></path>';
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Initialize theme based on user preference or system preference
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.body.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-toggle-text').textContent = 'Light';
+            document.querySelector('.theme-toggle-icon').innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="m12 1 0 6m0 6 0 6M4.22 4.22l1.42 1.42m11.72 11.72 1.42 1.42M1 12h6m6 0h6M4.22 19.78l1.42-1.42m11.72-11.72 1.42-1.42"></path>';
+        }
+    }
+
+    // Initialize theme on page load
+    document.addEventListener('DOMContentLoaded', initializeTheme);
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            if (e.matches) {
+                document.body.setAttribute('data-theme', 'dark');
+            } else {
+                document.body.removeAttribute('data-theme');
+            }
+        }
+    });
+    </script>
 </body>
 </html>
