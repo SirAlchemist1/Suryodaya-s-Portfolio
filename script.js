@@ -60,17 +60,100 @@ setTimeout(() => {
     }, 500);
 }, 5000);
 
-// Typing animation
+// Dynamic typing animation
 const typingText = document.getElementById('typing-text');
-const textToType = "I'm a passionate student and aspiring developer.";
-let i = 0;
+const textsToType = [
+    "Data Scientist",
+    "AI Engineer", 
+    "Researcher",
+    "Entrepreneur",
+    "Computer Vision Expert",
+    "ML Engineer"
+];
+let currentTextIndex = 0;
+let currentCharIndex = 0;
+let isDeleting = false;
+let typeSpeed = 100;
 
 function typeWriter() {
-    if (i < textToType.length) {
-        typingText.innerHTML += textToType.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
+    const currentText = textsToType[currentTextIndex];
+    
+    if (isDeleting) {
+        typingText.textContent = currentText.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+        typeSpeed = 50;
+    } else {
+        typingText.textContent = currentText.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+        typeSpeed = 100;
     }
+    
+    if (!isDeleting && currentCharIndex === currentText.length) {
+        typeSpeed = 2000; // Pause at end
+        isDeleting = true;
+    } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentTextIndex = (currentTextIndex + 1) % textsToType.length;
+        typeSpeed = 500; // Pause before next word
+    }
+    
+    setTimeout(typeWriter, typeSpeed);
+}
+
+// Start typing animation after page load
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(typeWriter, 2000); // Start after 2 seconds
+});
+
+// Timeline expandable bullets functionality
+function toggleBullets(button) {
+    const timelineContent = button.parentElement;
+    const hiddenBullets = timelineContent.querySelectorAll('.timeline-bullets li.hidden');
+    const isExpanded = button.classList.contains('expanded');
+    
+    if (isExpanded) {
+        // Collapse
+        hiddenBullets.forEach(bullet => {
+            bullet.style.display = 'none';
+            bullet.classList.add('hidden');
+        });
+        button.textContent = 'Show more';
+        button.classList.remove('expanded');
+    } else {
+        // Expand
+        hiddenBullets.forEach(bullet => {
+            bullet.style.display = 'block';
+            bullet.classList.remove('hidden');
+        });
+        button.textContent = 'Show less';
+        button.classList.add('expanded');
+    }
+}
+
+// Resume modal functionality
+function openResumeModal() {
+    const modal = document.getElementById('resume-modal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeResumeModal() {
+    const modal = document.getElementById('resume-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+// Close resume modal when clicking outside
+window.addEventListener('click', (event) => {
+    const resumeModal = document.getElementById('resume-modal');
+    if (event.target === resumeModal) {
+        closeResumeModal();
+    }
+});
+
+// Projects "Coming Soon" functionality
+function showComingSoon() {
+    alert('🚀 This project is currently under development! Stay tuned for updates.');
 }
 
 // Scroll Progress Indicator
@@ -82,23 +165,96 @@ window.addEventListener('scroll', () => {
     scrollProgress.style.width = progress + '%';
 });
 
-// Skills section
+// Skills section with proficiency levels
 const skillsData = {
-    programming: ['Python', 'HTML/CSS', 'C++', 'C'],
-    datascience: ['Natural Language Processing (NLP)', 'Machine Learning Algorithms', 'Predictive Analytics', 'Data Representation and Modeling', 'Statistical Analysis'],
-    tools: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'SQL', 'Jupyter Notebooks', 'Git'],
-    software: ['Data Structures & Algorithms', 'Object-Oriented Programming', 'Software Project Management', 'Compiler Design'],
-    research: ['Data Pipeline Optimization', 'Multimodal Data Integration', 'Comprehensive Literature Reviews'],
-    collaboration: ['Team Collaboration', 'Agile Methodologies', 'Start-up Development'],
-    // New advanced skills
+    programming: [
+        {name: 'Python', level: 90},
+        {name: 'C++', level: 70},
+        {name: 'C', level: 70},
+        {name: 'R', level: 70},
+        {name: 'MATLAB', level: 70},
+        {name: 'HTML/CSS', level: 85}
+    ],
+    datascience: [
+        {name: 'Natural Language Processing (NLP)', level: 85},
+        {name: 'Machine Learning Algorithms', level: 90},
+        {name: 'Predictive Analytics', level: 80},
+        {name: 'Data Representation and Modeling', level: 85},
+        {name: 'Statistical Analysis', level: 80}
+    ],
+    tools: [
+        {name: 'TensorFlow', level: 85},
+        {name: 'PyTorch', level: 90},
+        {name: 'Scikit-learn', level: 85},
+        {name: 'SQL', level: 80},
+        {name: 'Jupyter Notebooks', level: 90},
+        {name: 'Git', level: 85}
+    ],
+    software: [
+        {name: 'Data Structures & Algorithms', level: 85},
+        {name: 'Object-Oriented Programming', level: 90},
+        {name: 'Software Project Management', level: 75},
+        {name: 'Compiler Design', level: 70}
+    ],
+    research: [
+        {name: 'Data Pipeline Optimization', level: 85},
+        {name: 'Multimodal Data Integration', level: 80},
+        {name: 'Comprehensive Literature Reviews', level: 90}
+    ],
+    collaboration: [
+        {name: 'Team Collaboration', level: 90},
+        {name: 'Agile Methodologies', level: 85},
+        {name: 'Start-up Development', level: 80}
+    ],
     'advanced-ml': [
-        'TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Hugging Face',
-        'VLMs', 'VLA pipelines', 'RLHF & DPO', 'CNNs', 'RNNs', 'Object Detection', 'NLP', 'LLMs', 'QLoRA/LoRA', 'GPT', 'Transformers', 'OpenCV', 'Evaluation & Benchmarking',
-        'Robotics & Computer Vision: ROS Noetic', 'Meta Aria SDK (Gen 1)', 'UFactory xArm6', 'Real-Time VLM/VLA Integration'
+        {name: 'TensorFlow', level: 85},
+        {name: 'PyTorch', level: 90},
+        {name: 'Keras', level: 85},
+        {name: 'Scikit-learn', level: 85},
+        {name: 'SpaCy', level: 80},
+        {name: 'NLTK', level: 80},
+        {name: 'Pandas', level: 90},
+        {name: 'NumPy', level: 90},
+        {name: 'Matplotlib', level: 85},
+        {name: 'Seaborn', level: 85},
+        {name: 'Hugging Face', level: 80},
+        {name: 'VLMs', level: 75},
+        {name: 'VLA pipelines', level: 75},
+        {name: 'RLHF & DPO', level: 70},
+        {name: 'CNNs', level: 85},
+        {name: 'RNNs', level: 80},
+        {name: 'Object Detection', level: 80},
+        {name: 'NLP', level: 85},
+        {name: 'TLMs', level: 75},
+        {name: 'LLMs', level: 80},
+        {name: 'QLoRA/LoRA', level: 70},
+        {name: 'GPT', level: 80},
+        {name: 'Transformers', level: 80},
+        {name: 'OpenCV', level: 85},
+        {name: 'Evaluation & Benchmarking', level: 85}
     ],
     'data-tools': [
-        'SQL (MySQL)', 'NoSQL (MongoDB)', 'Neo4j', 'Data Wrangling', 'Feature Engineering', 'Visualization',
-        'RESTful API Design', 'OOP', 'Agile Methodologies', 'Git/GitHub', 'Docker', 'PyCharm', 'Weights & Biases'
+        {name: 'SQL (MySQL)', level: 85},
+        {name: 'NoSQL (MongoDB)', level: 80},
+        {name: 'Neo4j', level: 70},
+        {name: 'Cloud Computing', level: 75},
+        {name: 'Data Wrangling', level: 90},
+        {name: 'Feature Engineering', level: 85},
+        {name: 'Visualization', level: 85},
+        {name: 'RESTful API Design', level: 80},
+        {name: 'OOP', level: 90},
+        {name: 'Agile', level: 85},
+        {name: 'Git/GitHub', level: 85},
+        {name: 'Docker', level: 75},
+        {name: 'PyCharm', level: 90},
+        {name: 'Weights & Biases', level: 80},
+        {name: 'n8n', level: 70}
+    ],
+    'robotics-vision': [
+        {name: 'ROS Noetic', level: 75},
+        {name: 'Meta Aria SDK (Gen 1)', level: 80},
+        {name: 'UFactory xArm6', level: 70},
+        {name: 'Real-Time VLM/VLA Integration', level: 75}
     ]
 };
 
@@ -110,13 +266,68 @@ const closeSkillDetails = document.getElementById('close-skill-details');
 function showSkillDetails(category) {
     const skills = skillsData[category];
     skillCategoryTitle.textContent = document.querySelector(`.skill-hex[data-category="${category}"] h3`).textContent;
-    skillList.innerHTML = skills.map(skill => `<li>${skill}</li>`).join('');
+    
+    skillList.innerHTML = skills.map(skill => {
+        const level = skill.level || 0;
+        const levelText = level >= 90 ? 'Expert' : level >= 80 ? 'Advanced' : level >= 70 ? 'Intermediate' : 'Beginner';
+        return `
+            <li class="skill-item">
+                <div class="skill-name">${skill.name}</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: ${level}%"></div>
+                </div>
+                <div class="skill-level">${level}% - ${levelText}</div>
+            </li>
+        `;
+    }).join('');
+    
     skillDetails.style.display = 'block';
+    
+    // Animate skill bars
+    setTimeout(() => {
+        const skillBars = skillDetails.querySelectorAll('.skill-bar');
+        skillBars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 100);
+        });
+    }, 100);
 }
 
 document.querySelectorAll('.skill-hex').forEach(hex => {
     hex.addEventListener('click', () => {
         showSkillDetails(hex.dataset.category);
+    });
+});
+
+// Skills filter functionality
+document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        const category = tab.dataset.category;
+        const skillHexes = document.querySelectorAll('.skill-hex');
+        
+        if (category === 'all') {
+            skillHexes.forEach(hex => {
+                hex.style.display = 'block';
+                hex.style.animation = 'fadeInUp 0.5s ease forwards';
+            });
+        } else {
+            skillHexes.forEach(hex => {
+                if (hex.dataset.category === category) {
+                    hex.style.display = 'block';
+                    hex.style.animation = 'fadeInUp 0.5s ease forwards';
+                } else {
+                    hex.style.display = 'none';
+                }
+            });
+        }
     });
 });
 
@@ -214,10 +425,26 @@ function revealElementsOnScroll() {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
         const windowHeight = window.innerHeight;
-        if (elementTop < windowHeight - 100) {
+        
+        // More sophisticated reveal logic
+        if (elementTop < windowHeight - 150 && elementBottom > 100) {
             element.classList.add('active');
         }
+    });
+}
+
+// Enhanced scroll progress with smooth updates
+function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scroll-progress');
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    
+    // Smooth progress bar update
+    requestAnimationFrame(() => {
+        scrollProgress.style.width = progress + '%';
     });
 }
 
