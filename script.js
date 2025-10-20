@@ -255,6 +255,30 @@ const skillsData = {
         {name: 'Meta Aria SDK (Gen 1)', level: 80},
         {name: 'UFactory xArm6', level: 70},
         {name: 'Real-Time VLM/VLA Integration', level: 75}
+    ],
+    'research-methods': [
+        {name: 'Experimental Design', level: 85},
+        {name: 'Statistical Analysis', level: 90},
+        {name: 'Hypothesis Testing', level: 85},
+        {name: 'Data Collection & Validation', level: 90},
+        {name: 'Research Methodology', level: 85},
+        {name: 'Peer Review Process', level: 80},
+        {name: 'Academic Collaboration', level: 90},
+        {name: 'Research Ethics', level: 85},
+        {name: 'Literature Review', level: 90},
+        {name: 'Research Documentation', level: 85}
+    ],
+    'academic-writing': [
+        {name: 'Research Paper Writing', level: 90},
+        {name: 'Technical Documentation', level: 85},
+        {name: 'Grant Proposal Writing', level: 80},
+        {name: 'Conference Presentations', level: 85},
+        {name: 'Academic Publishing', level: 80},
+        {name: 'Citation Management', level: 90},
+        {name: 'Scientific Communication', level: 85},
+        {name: 'Research Summaries', level: 90},
+        {name: 'Academic Editing', level: 80},
+        {name: 'Peer Review', level: 75}
     ]
 };
 
