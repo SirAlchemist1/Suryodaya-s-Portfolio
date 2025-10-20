@@ -1,0 +1,223 @@
+---
+title: "Principal Component Analysis (PCA): A Practical Tutorial"
+author: "Suryodaya B. Shahi"
+date: "`r format(Sys.Date())`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+    code_folding: show
+    self_contained: true
+fontsize: 11pt
+geometry: margin=1in
+bibliography: references.bib
+---
+
+# Overview
+
+Principal Component Analysis (PCA) is a linear technique that **rotates** a dataset into a new coordinate system so that:
+1) the first axis (PC1) explains the largest possible variance,  
+2) the second axis (PC2) explains the largest remaining variance **orthogonal** to PC1, and so on.  
+PCA is widely used for **visualization**, **noise reduction**, and **preprocessing** before modeling [@islr2013; @jolliffe2002].
+
+This tutorial is designed for readers with an undergraduate STEM background and some familiarity with R. You will learn:
+- When and why to use PCA
+- The core math (at a high level) behind PCA (covariance, eigenvectors/SVD)
+- How to implement PCA with base R (`prcomp`) and visualize results
+- How to interpret explained variance and **choose the number of components**
+- The effect of **centering and scaling** on PCA
+
+We will create **at least four figures** from both **synthetic** and **real** data. You can knit this document directly to HTML.
+
+> **Reproducibility:** Each code chunk sets a seed where relevant; packages will auto-install if missing.
+
+# Background and Intuition
+
+At a high level, PCA solves two equivalent problems:
+- **Variance maximization:** Find orthogonal directions (unit vectors) that capture maximal variance in the data.  
+- **Low-rank approximation:** Find a low-dimensional linear subspace that best reconstructs the data in a least-squares sense.
+
+If $\mathbf{X}$ is an $n \times p$ matrix of features (rows are observations) that has been **centered** (and often **scaled**), PCA computes the **singular value decomposition (SVD)**:
+$$
+\mathbf{X} = \mathbf{U}\mathbf{D}\mathbf{V}^\top,
+$$
+where columns of $\mathbf{V}$ are **principal axes/loadings**, and rows of $\mathbf{UD}$ are **scores** (coordinates of observations in the PC space). In R, `prcomp` uses SVD internally [@prcomp].
+
+> **Centering & scaling.** If variables are on different scales or units, set `scale. = TRUE` so each feature contributes fairly [@islr2013].
+
+# PCA in R with `prcomp`
+
+```{r setup, message=FALSE, warning=FALSE}
+# Helper: install-and-load
+install_and_load <- function(pkgs) {
+  for (p in pkgs) {
+    if (!requireNamespace(p, quietly = TRUE)) {
+      install.packages(p, repos = "https://cloud.r-project.org")
+    }
+    suppressPackageStartupMessages(library(p, character.only = TRUE))
+  }
+}
+
+install_and_load(c("ggplot2", "gridExtra", "factoextra"))
+theme_set(theme_minimal(base_size = 12))
+```
+
+## Synthetic 2D example: Seeing principal directions
+
+We’ll sample a 2D Gaussian with correlation to visualize how PCA finds the **longest-variance** direction.
+
+```{r synthetic-data, fig.cap="Figure 1. Synthetic 2D correlated data with principal directions (arrows) from PCA.", fig.width=6, fig.height=5}
+set.seed(42)
+n <- 300
+x1 <- rnorm(n)
+x2 <- 0.7 * x1 + rnorm(n, sd = 0.5)
+X  <- cbind(x1, x2)
+
+pc_syn <- prcomp(X, center = TRUE, scale. = TRUE)
+
+# Build a plot with principal axes as arrows
+df <- as.data.frame(scale(X, center = TRUE, scale = TRUE))
+colnames(df) <- c("x1","x2")
+
+# Get loadings scaled by sdev for arrow length
+L <- pc_syn$rotation
+S <- pc_syn$sdev
+arrow1 <- S[1] * L[,1]
+arrow2 <- S[2] * L[,2]
+
+plot(df$x1, df$x2, xlab = "x1 (scaled)", ylab = "x2 (scaled)", main = "Correlated data with PC directions")
+arrows(0, 0, arrow1[1], arrow1[2], length = 0.1, lwd = 2)
+arrows(0, 0, arrow2[1], arrow2[2], length = 0.1, lwd = 2, lty = 2)
+legend("topright", legend = c("PC1", "PC2"), lty = c(1,2), bty = "n")
+```
+
+**Interpretation.** The solid arrow shows **PC1**, aligned with the longest spread; the dashed arrow is **PC2**, orthogonal to PC1.
+
+## Explained variance and the scree plot
+
+The variance explained by each PC equals the squared singular values normalized by total variance. `prcomp` provides standard deviations in `sdev`; their squares are eigenvalues.
+
+```{r scree, fig.cap="Figure 2. Scree plot and cumulative explained variance for the synthetic data.", fig.width=7, fig.height=4}
+prop_var <- pc_syn$sdev^2 / sum(pc_syn$sdev^2)
+cum_var  <- cumsum(prop_var)
+
+par(mfrow=c(1,2))
+barplot(prop_var, names.arg = paste0("PC", 1:length(prop_var)), main = "Scree: Proportion of Variance", ylab = "Proportion")
+plot(cum_var, type = "b", pch = 19, xaxt = "n", ylim = c(0,1), main = "Cumulative Explained Variance", ylab = "Cumulative Proportion")
+axis(1, at = 1:length(cum_var), labels = paste0("PC", 1:length(cum_var)))
+abline(h = 0.9, lty = 2, col = "gray50")
+par(mfrow=c(1,1))
+```
+
+**How many PCs?** Common rules:
+- **Cumulative threshold:** choose the smallest $k$ such that cumulative variance $\ge 90\%$ (dashed line).  
+- **Elbow (scree) method:** pick the $k$ at the **elbow** of the scree plot [@islr2013].  
+- **Kaiser criterion:** with standardized variables, keep PCs with eigenvalue $>1$ [@jolliffe2002].  
+- **(Optional) Parallel analysis:** compare eigenvalues to those from random data (see Appendix).
+
+# Real dataset: `iris`
+
+We now apply PCA to **Fisher’s Iris** dataset: four numeric measurements per flower and a species label. We’ll keep the species **only** for coloring; PCA is unsupervised.
+
+```{r iris-prep, message=FALSE, warning=FALSE}
+data(iris)
+X_iris <- as.matrix(iris[, 1:4])
+species <- iris$Species
+
+pc_iris <- prcomp(X_iris, center = TRUE, scale. = TRUE)
+summary(pc_iris)$importance[2:3, 1:4]  # proportion and cumulative variance
+```
+
+## PC1 vs PC2 scatter (colored by species)
+
+```{r iris-scatter, fig.cap="Figure 3. Iris projected onto the first two principal components. Coloring uses the species label (not used to compute PCA).", fig.width=6, fig.height=5}
+scores <- as.data.frame(pc_iris$x)
+scores$Species <- species
+
+ggplot(scores, aes(PC1, PC2, color = Species)) +
+  geom_point(alpha = 0.8, size = 2) +
+  labs(title = "Iris: PC1 vs PC2", subtitle = "PCA on centered & scaled features") +
+  theme(legend.position = "bottom")
+```
+
+**Interpretation.** Notice that setosa separates well along PC1/PC2; versicolor and virginica partially overlap—PCA found **directions of maximal variance**, not necessarily the best for class separation, yet often informative for visualization.
+
+## Biplot: variables and observations
+
+A **biplot** overlays variable loadings (arrows) on the PC1–PC2 scores.
+
+```{r iris-biplot, fig.cap="Figure 4. Biplot for Iris: arrows show variable loadings; points are observations in PC space.", fig.width=6, fig.height=5, message=FALSE, warning=FALSE}
+fviz_pca_biplot(pc_iris, repel = TRUE, col.var = "black") +
+  ggtitle("Iris PCA Biplot")
+```
+
+## Choosing the number of components: variance & reconstruction error
+
+In practice, we often pick the smallest $k$ with adequate variance coverage (e.g., 90–95%). Another diagnostic is **reconstruction error**: project data onto the first $k$ PCs and measure mean squared error (MSE) between the original (standardized) data and its reconstruction.
+
+```{r iris-reconstruction, fig.cap="Figure 5. Reconstruction error (MSE) vs number of components k for Iris (on standardized features).", fig.width=6, fig.height=4}
+# Standardize
+Xc <- scale(X_iris, center = TRUE, scale = TRUE)
+U <- pc_iris$u
+D <- diag(pc_iris$sdev)
+V <- pc_iris$rotation
+
+recon_mse <- function(k) {
+  # Use only first k components
+  Vk <- V[, 1:k, drop=FALSE]
+  Xhat <- (Xc %*% Vk) %*% t(Vk)
+  mean((Xc - Xhat)^2)
+}
+
+ks <- 1:ncol(X_iris)
+mse <- sapply(ks, recon_mse)
+plot(ks, mse, type="b", pch=19, xlab="k (number of PCs)", ylab="Reconstruction MSE",
+     main = "Iris: Reconstruction Error vs k")
+```
+
+# Effect of scaling: `USArrests`
+
+`USArrests` variables have very different scales (e.g., UrbanPop vs assault). We compare PCA **with** and **without** scaling.
+
+```{r usarr, fig.cap="Figure 6. Scree plots for USArrests with and without scaling. Scaling equalizes variable influence.", fig.width=7, fig.height=4}
+data(USArrests)
+pc_unscaled <- prcomp(USArrests, center = TRUE, scale. = FALSE)
+pc_scaled   <- prcomp(USArrests, center = TRUE, scale. = TRUE)
+
+pv_unscaled <- pc_unscaled$sdev^2 / sum(pc_unscaled$sdev^2)
+pv_scaled   <- pc_scaled$sdev^2   / sum(pc_scaled$sdev^2)
+
+par(mfrow=c(1,2))
+barplot(pv_unscaled, names.arg=paste0("PC",1:length(pv_unscaled)), main="Unscaled: Scree", ylab="Proportion")
+barplot(pv_scaled,   names.arg=paste0("PC",1:length(pv_scaled)),   main="Scaled: Scree",   ylab="Proportion")
+par(mfrow=c(1,1))
+```
+
+**Takeaway.** Without scaling, variables with larger variance dominate PCA. With `scale.=TRUE`, each feature contributes more equally—often essential for fair analysis [@islr2013].
+
+# Practical Tips
+
+- **Missing values:** impute before PCA (e.g., mean imputation or `missMDA` package).  
+- **Outliers:** PCA is sensitive; consider robust PCA or transform outliers.  
+- **Interpretation:** loadings indicate which original variables contribute to each PC; sign is arbitrary (flipping an axis does not change the subspace).  
+- **Supervised tasks:** PCA is unsupervised; for class separation consider supervised linear methods (e.g., LDA) after or instead of PCA [@islr2013].
+
+# Conclusion
+
+PCA is a powerful and fast way to simplify data, visualize structure, and build compact features. Use it when you want to **reduce dimensionality**, **denoise**, or **explore** patterns, remembering to **center/scale** appropriately and to justify the chosen number of components via **explained variance** and (optionally) **reconstruction error**.
+
+# Appendix: Parallel analysis (optional)
+
+Parallel analysis compares observed eigenvalues to those from random data. Keep PCs whose eigenvalues exceed the random baseline. This can be more objective than the elbow rule [@jolliffe2002].
+
+```{r parallel-analysis, eval=FALSE}
+# Optional: run once if you want a more rigorous component count
+install_and_load(c("paran"))
+paran::paran(scale(X_iris), graph = TRUE, color = TRUE)  # uses standardized features
+```
+
+# References
+
+See the bibliography below for the cited sources.
