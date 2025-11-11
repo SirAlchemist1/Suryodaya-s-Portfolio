@@ -349,7 +349,7 @@
                             </div>
                             <ul class="timeline-bullets">
                                 <li class="visible">Deployed VLMs (DeepSeek, Qwen-VL, LLaVA) on Meta Aria Gen-1; Qwen-VL best under motion blur (<strong>+23%</strong> grounding).</li>
-                                <li class="visible">Co-designed <strong>VISTA</strong>: 50+ real scenarios + <em>Action-Truth</em> labels for assistive action evaluation (targets: <em>npj Digital Medicine</em>, <em>The Lancet Digital Health</em>).</li>
+                                <li class="visible">Co-designed <strong>VISTA</strong>: 1000+ real scenarios + <em>Action-Truth</em> labels for assistive action evaluation (targets: <em>npj Digital Medicine</em>, <em>The Lancet Digital Health</em>).</li>
                                 <li class="hidden">Researching Vision-Language-Action (VLA) methods and techniques to improve the actions of a robotic surgical arm (Unitree) for medical applications.</li>
                                 <li class="hidden">Implementing advanced deep learning models for real-time object detection and scene understanding in assistive technology contexts.</li>
                             </ul>
@@ -441,84 +441,292 @@
                 <h2>Current Projects</h2>
                 <p class="projects-intro">Building the future of assistive AI through cutting-edge research in vision-language systems, wearable technology, and edge computing. Each project represents a step toward more accessible and intelligent human-computer interaction.</p>
                 <div class="project-grid">
-                    <div class="project-card" data-project="aria-qwen">
-                        <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smart Glasses AI" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.3;">
-                            <div class="project-overlay">
-                                <div class="project-overlay-content">
-                                    <h4>Aria Glasses on Qwen</h4>
-                                    <p>Real-time VLM pipeline for Meta Aria Gen-1 using Qwen-VL + BLIP; <strong>35%</strong> faster inference, <strong>60%</strong> fewer manual inputs.</p>
-                                    <div class="tech-stack">
-                                        <span class="tech-tag">Wearable AI</span>
-                                        <span class="tech-tag">VLM</span>
-                                        <span class="tech-tag">On-device</span>
-                                    </div>
-                                    <button class="project-btn" onclick="window.open('https://github.com/SirAlchemist1/Aria-glasses-on-Qwen', '_blank')">View Code</button>
-                                </div>
+                    <!-- VioPose Project Card -->
+                    <div class="project-card vista-card">
+                        <div class="project-image-container">
+                            <img src="images/VioPose.png" alt="VioPose: Violin Performance 4D Pose Estimation" class="project-main-image">
+                        </div>
+                        <div class="project-header">
+                            <h4 class="project-title">VioPose: Violin Performance 4D Pose Estimation</h4>
+                            <p class="project-subtitle">Hierarchical Audiovisual Inference for Precise Motion Analysis</p>
+                        </div>
+                        
+                        <div class="project-affiliation">
+                            <span class="institution">University of Maryland</span>
+                            <span class="lab">Perception & Robotics Group (Prof. Cornelia Fermüller)</span>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="tag">Multimodal Learning</span>
+                            <span class="tag">4D Pose Estimation</span>
+                            <span class="tag">Audiovisual Fusion</span>
+                            <span class="tag">Human Motion</span>
+                            <span class="tag">Computer Vision</span>
+                        </div>
+                        
+                        <div class="project-highlight">
+                            <strong>Largest calibrated violin-playing dataset</strong> with video, audio, and 3D motion capture. 
+                            Hierarchical multimodal network estimating <strong>fine-grained motions</strong> (vibrato ≈ 10mm) and 
+                            <strong>large motions</strong> (bowing) simultaneously, outperforming SoTA visual-only methods.
+                        </div>
+                        
+                        <p class="project-description">
+                            Novel multimodal network that hierarchically estimates 4D human pose (3D pose over time) for violin performance 
+                            by leveraging the direct causal relationship between music and human motions. Addresses challenges of occlusions, 
+                            partial views, and fast subtle movements (e.g., vibrato) that visual-only methods fail to capture. High-level 
+                            features cascade to low-level features with Bayesian updates, producing accurate pose sequences for precise 
+                            motion analysis. Published at WACV 2025.
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Key Achievements:</span>
+                                <ul class="detail-list">
+                                    <li>Outperforms state-of-the-art visual-only pose estimation methods</li>
+                                    <li>Successfully captures fine-grained vibrato motion (≈10mm perturbation) and large bowing motions</li>
+                                    <li>Collected largest and most diverse calibrated violin-playing dataset (12 performers, 4 camera views)</li>
+                                    <li>Hierarchical architecture with single-modality encoders, hierarchy module, and mixing module</li>
+                                    <li>Code and dataset released for research community benefit</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="project-info">
-                            <h3>Aria Glasses on Qwen</h3>
-                            <p>Real-time VLM pipeline for Meta Aria Gen-1 using Qwen-VL + BLIP; <strong>35%</strong> faster inference, <strong>60%</strong> fewer manual inputs. <a href="https://github.com/SirAlchemist1/Aria-glasses-on-Qwen" target="_blank" style="color: #4a9eff; text-decoration: none;">View on GitHub →</a></p>
-                            <div class="project-tech-stack">
-                                <i class="fas fa-glasses" title="Wearable AI"></i>
-                                <i class="fas fa-brain" title="VLM"></i>
-                                <i class="fas fa-mobile-alt" title="On-device"></i>
-                            </div>
+                        
+                        <div class="project-links">
+                            <a href="https://sj-yoo.info/viopose/" class="btn-link" target="_blank">
+                                <i class="fas fa-globe"></i> Project Page
+                            </a>
+                            <a href="https://github.com/SirAlchemist1" class="btn-link" target="_blank">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="btn-link" target="_blank">
+                                <i class="fas fa-file-alt"></i> Paper (WACV 2025)
+                            </a>
                         </div>
                     </div>
                     
-                    <div class="project-card" data-project="tiny-ace">
-                        <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); position: relative; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Neural Network" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.3;">
-                            <div class="project-overlay">
-                                <div class="project-overlay-content">
-                                    <h4>Tiny-ACE: Self-Improving Tiny LMs</h4>
-                                    <p>Agentic Context Engineering loop for sub-3B models (Phi-2, TinyLlama). Evolving playbook (1–4k tokens) enables on-device continual learning.</p>
-                                    <div class="tech-stack">
-                                        <span class="tech-tag">LLM</span>
-                                        <span class="tech-tag">Reasoning</span>
-                                        <span class="tech-tag">Edge</span>
-                                    </div>
-                                    <button class="project-btn" onclick="window.open('https://arxiv.org/abs/2510.04618', '_blank')">View ArXiv</button>
-                                </div>
+                    <!-- Aria Glasses Project Card -->
+                    <div class="project-card vista-card">
+                        <div class="project-header">
+                            <h4 class="project-title">Aria Glasses on Qwen</h4>
+                            <p class="project-subtitle">Real-Time Vision-Language Pipeline for Meta Aria Gen-1</p>
+                        </div>
+                        
+                        <div class="project-affiliation">
+                            <span class="institution">Harvard Medical School</span>
+                            <span class="lab">AI & Robotics Lab (Dr. Mengyu Wang)</span>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="tag">Wearable AI</span>
+                            <span class="tag">Vision-Language Models</span>
+                            <span class="tag">On-Device Inference</span>
+                            <span class="tag">Assistive Technology</span>
+                            <span class="tag">Real-Time Processing</span>
+                        </div>
+                        
+                        <div class="project-highlight">
+                            <strong>35% faster inference</strong> compared to baseline implementations, 
+                            <strong>60% fewer manual inputs</strong> through intelligent context-aware responses. 
+                            Optimized for low-latency on-device inference on Meta Aria Gen-1 smart glasses.
+                        </div>
+                        
+                        <p class="project-description">
+                            Real-time Vision-Language Model (VLM) pipeline for Meta Aria Gen-1 smart glasses integrating Qwen-VL and BLIP 
+                            for scene understanding and assistive AI applications. Designed for assistive technology use cases requiring 
+                            real-time visual understanding and natural language interaction. Optimized for low-latency on-device inference, 
+                            enabling seamless user experience without cloud dependency.
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Key Achievements:</span>
+                                <ul class="detail-list">
+                                    <li>35% faster processing compared to baseline VLM implementations</li>
+                                    <li>60% reduction in manual user inputs through context-aware responses</li>
+                                    <li>Optimized for on-device inference without cloud dependency</li>
+                                    <li>Successfully deployed on Meta Aria Gen-1 hardware</li>
+                                    <li>Open-source implementation available on GitHub</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="project-info">
-                            <h3>Tiny-ACE: Self-Improving Tiny LMs</h3>
-                            <p>Agentic Context Engineering loop for sub-3B models (Phi-2, TinyLlama). Evolving playbook (1–4k tokens) enables on-device continual learning. <a href="https://arxiv.org/abs/2510.04618" target="_blank" style="color: #4a9eff; text-decoration: none;">View on ArXiv →</a></p>
-                            <div class="project-tech-stack">
-                                <i class="fas fa-robot" title="LLM"></i>
-                                <i class="fas fa-cogs" title="Reasoning"></i>
-                                <i class="fas fa-mobile-alt" title="Edge"></i>
-                            </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/SirAlchemist1/Aria-glasses-on-Qwen" class="btn-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
                         </div>
                     </div>
                     
-                    <div class="project-card" data-project="clinical-nlp">
-                        <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); position: relative; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Medical Data Analysis" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.3;">
-                            <div class="project-overlay">
-                                <div class="project-overlay-content">
-                                    <h4>Clinical Notes Entity Extraction (AWS)</h4>
-                                    <p>Serverless NLP pipeline (Lambda, S3, DynamoDB) for de-identified notes; −<strong>40%</strong> analyst time via searchable entities & dashboards.</p>
-                                    <div class="tech-stack">
-                                        <span class="tech-tag">NLP</span>
-                                        <span class="tech-tag">AWS</span>
-                                        <span class="tech-tag">Serverless</span>
-                                    </div>
-                                    <button class="project-btn" onclick="showComingSoon()">Overview</button>
-                                </div>
+                    <!-- Tiny-ACE Project Card -->
+                    <div class="project-card vista-card">
+                        <div class="project-header">
+                            <h4 class="project-title">Tiny-ACE: Self-Improving Tiny LMs</h4>
+                            <p class="project-subtitle">Domain-Specific Benchmarking with Agentic Context Engineering</p>
+                        </div>
+                        
+                        <div class="project-affiliation">
+                            <span class="institution">Research Project</span>
+                            <span class="lab">Edge AI & Language Models</span>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="tag">Small Language Models</span>
+                            <span class="tag">Agentic Context Engineering</span>
+                            <span class="tag">Edge Computing</span>
+                            <span class="tag">Domain Adaptation</span>
+                            <span class="tag">Self-Learning</span>
+                        </div>
+                        
+                        <div class="project-highlight">
+                            <strong>No fine-tuning required</strong>—adapt frozen SLMs using ACE-style playbook memory. 
+                            Benchmarked on <strong>TAT-QA (finance)</strong> and <strong>MedQA (medical)</strong> tasks. 
+                            Optimized for Mac M-series, consumer GPUs, and compute-constrained environments.
+                        </div>
+                        
+                        <p class="project-description">
+                            Domain-specific benchmarking framework for Small Language Models (SLMs) on edge devices using 
+                            <strong>Agentic Context Engineering (ACE)</strong> instead of traditional fine-tuning. Evaluates 
+                            sub-3B models (Phi-2, TinyLlama) on specialized tasks using self-improving playbook memory (1–4k tokens). 
+                            Implements SEAL/SPICE-inspired algorithms for automatic prompt evolution, enabling on-device continual 
+                            learning without parameter updates.
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Key Achievements:</span>
+                                <ul class="detail-list">
+                                    <li>No fine-tuning—adapt frozen SLMs via dynamic playbook memory</li>
+                                    <li>Benchmarked on domain-specific tasks (TAT-QA finance, MedQA medical)</li>
+                                    <li>Self-improving playbook memory (1–4k tokens) for on-device learning</li>
+                                    <li>SEAL/SPICE-inspired algorithms for automatic prompt evolution</li>
+                                    <li>Optimized for Mac M-series and consumer GPUs</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="project-info">
-                            <h3>Clinical Notes Entity Extraction (AWS)</h3>
-                            <p>Serverless NLP pipeline (Lambda, S3, DynamoDB) for de-identified notes; −<strong>40%</strong> analyst time via searchable entities & dashboards.</p>
-                            <div class="project-tech-stack">
-                                <i class="fas fa-language" title="NLP"></i>
-                                <i class="fab fa-aws" title="AWS"></i>
-                                <i class="fas fa-server" title="Serverless"></i>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/SirAlchemist1/edge-slm-ace" class="btn-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://arxiv.org/abs/2510.04618" class="btn-link" target="_blank">
+                                <i class="fas fa-file-alt"></i> ArXiv
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- HC-TAP Project Card -->
+                    <div class="project-card vista-card">
+                        <div class="project-header">
+                            <h4 class="project-title">HC-TAP: Healthcare Text Analytics</h4>
+                            <p class="project-subtitle">Serverless NLP Pipeline for Clinical Notes Entity Extraction</p>
+                        </div>
+                        
+                        <div class="project-affiliation">
+                            <span class="institution">AWS Serverless Architecture</span>
+                            <span class="lab">Healthcare Analytics Platform</span>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="tag">NLP</span>
+                            <span class="tag">AWS Serverless</span>
+                            <span class="tag">Healthcare Analytics</span>
+                            <span class="tag">Entity Extraction</span>
+                            <span class="tag">Streamlit Dashboard</span>
+                        </div>
+                        
+                        <div class="project-highlight">
+                            <strong>−40% analyst time</strong> via automated entity extraction and searchable dashboards. 
+                            Extracts medical entities (Problems/Diagnoses, Medications, Tests) from free-text clinical notes 
+                            using AWS Comprehend Medical with Streamlit analytics dashboard.
+                        </div>
+                        
+                        <p class="project-description">
+                            Serverless NLP pipeline extracting medical entities from free-text clinical notes using AWS Comprehend Medical. 
+                            Architecture: S3 → Lambda → Comprehend Medical → JSONL storage → Athena DDL for SQL queries. Built Streamlit 
+                            analytics dashboard with KPIs (latency p50/p95, error rates), top-10 entity rankings, and CSV exports. 
+                            Makes clinical notes queryable and dashboard-ready without manual chart skimming.
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Key Achievements:</span>
+                                <ul class="detail-list">
+                                    <li>40% reduction in analyst time via automated entity extraction</li>
+                                    <li>Streamlit dashboard with KPIs, top entities, and CSV exports</li>
+                                    <li>Serverless architecture: Lambda, S3, Comprehend Medical, Athena</li>
+                                    <li>Extracts Problems/Diagnoses, Medications, and Tests entities</li>
+                                    <li>Athena DDL prepared for SQL queries over JSONL data lake</li>
+                                </ul>
                             </div>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/withsivram/hc-tap" class="btn-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- VISTA Project Card -->
+                    <div class="project-card vista-card">
+                        <div class="project-image-container">
+                            <img src="images/VISTA.png" alt="VISTA: Assistive Vision Dataset" class="project-main-image">
+                        </div>
+                        <div class="project-header">
+                            <h4 class="project-title">VISTA: Assistive Vision Dataset</h4>
+                            <p class="project-subtitle">Multimodal Egocentric Dataset for Low-Vision AI</p>
+                        </div>
+                        
+                        <div class="project-affiliation">
+                            <span class="institution">Harvard Medical School</span>
+                            <span class="lab">AI & Robotics Lab (Dr. Mengyu Wang)</span>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="tag">Assistive AI</span>
+                            <span class="tag">Dataset Engineering</span>
+                            <span class="tag">Wearable Sensing</span>
+                            <span class="tag">Privacy-by-Design</span>
+                            <span class="tag">Human-Centered AI</span>
+                        </div>
+                        
+                        <div class="project-highlight">
+                            <strong>1,000+ egocentric recordings</strong> from Meta Project Aria glasses, 
+                            <strong>9 task categories</strong> (navigation, hazard detection, text understanding), 
+                            <strong>6 multimodal streams</strong> with &lt;1ms synchronization.
+                        </div>
+                        
+                        <p class="project-description">
+                            Led data collection and engineering design of the first multimodal dataset specifically designed 
+                            for assistive AI benchmarking with visually impaired users. Coordinated egocentric multimodal 
+                            capture (RGB video, IMU, spatial audio, SLAM, eye-tracking), built preprocessing pipeline with 
+                            privacy-by-design (automated face/license plate blurring), and developed chunked loading architecture 
+                            for efficient handling of 4GB+ .vrs files.
+                        </p>
+                        
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Key Achievements:</span>
+                                <ul class="detail-list">
+                                    <li>Sub-second on-device inference latency (NVIDIA Jetson)</li>
+                                    <li>Harvard IRB compliance with ethical safeguards throughout workflow</li>
+                                    <li>Adaptive preprocessing (gamma correction, exposure balancing) for lighting variability</li>
+                                    <li>Custom Label Studio interfaces for action-level ground truth annotation</li>
+                                    <li>Planned open-source release on HuggingFace for community benchmarking</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/Harvard-AI-and-Robotics-Lab" class="btn-link" target="_blank">
+                                <i class="fab fa-github"></i> Lab GitHub
+                            </a>
+                            <a href="#" class="btn-link" target="_blank">
+                                <i class="fas fa-file"></i> Technical Report
+                            </a>
+                            <a href="#" class="btn-link" target="_blank">
+                                <i class="fas fa-database"></i> Dataset (HuggingFace)
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -708,9 +916,9 @@
                                     <p>Co-authored paper on deep learning and IoT integration for autonomous vehicles. CNN-LSTM approach achieved +14% accuracy in trajectory prediction.</p>
                                 </div>
                                 <div class="paper-preview">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Deep Learning Research Visualization" style="width: 100%; height: 200px; object-fit: cover;">
+                                    <img src="images/VTP.png" alt="Deep Learning Methods for Vehicle Trajectory Prediction" style="width: 100%; height: 200px; object-fit: cover;">
                                     <div class="preview-overlay">
-                                        <a href="https://arxiv.org/abs/2510.04618" target="_blank" class="preview-link">
+                                        <a href="https://link.springer.com/chapter/10.1007/978-981-99-6586-1_37" target="_blank" class="preview-link">
                                             <i class="fas fa-external-link-alt"></i>
                                             View Paper
                                         </a>
@@ -732,19 +940,19 @@
                                 <p class="publication-authors">With SeongJong Yoo, Snehesh Shrestha (PI: Prof. R. Fermüller)</p>
                                 <p class="publication-venue">Target: CVPR 2026</p>
                                 <div class="publication-abstract">
-                                    <p>Enhancing VioPose (audiovisual 4D pose) for violin performance; +12–15% pose fidelity with calibrated SMPL-X retargeting.</p>
+                                    <p>Enhancing VioPose (audiovisual 4D pose) for violin performance; <strong>+12–15% pose fidelity</strong> with calibrated SMPL-X retargeting.</p>
                                 </div>
                                 <div class="paper-preview">
-                                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="VioPose Research Visualization" style="width: 100%; height: 200px; object-fit: cover;">
+                                    <img src="images/VioPose.png" alt="VioPose Research Visualization" style="width: 100%; height: 200px; object-fit: cover;">
                                     <div class="preview-overlay">
                                         <a href="#" class="preview-link" onclick="showComingSoon()">
                                             <i class="fas fa-file-alt"></i>
                                             Coming Soon
                                         </a>
-                        </div>
+                                    </div>
                                     <p class="preview-caption">VioPose: Audiovisual 4D Human Pose for Violin Performance</p>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
                     
                             <div class="publication-item">
                                 <div class="publication-header">
@@ -754,10 +962,10 @@
                                 <p class="publication-authors">With Josh Yeh, Mengyu Wang (MEEI/Harvard)</p>
                                 <p class="publication-venue">Targets: <em>npj Digital Medicine</em> or <em>The Lancet Digital Health</em></p>
                                 <div class="publication-abstract">
-                                    <p>50+ real scenarios + <em>Action-Truth</em> labels for assistive action evaluation using Meta Aria Gen-1 glasses.</p>
+                                    <p><strong>1000+ real scenarios</strong> + <em>Action-Truth</em> labels for assistive action evaluation using Meta Aria Gen-1 glasses.</p>
                                 </div>
                                 <div class="paper-preview">
-                                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="VISTA Dataset Visualization" style="width: 100%; height: 200px; object-fit: cover;">
+                                    <img src="images/VISTA.png" alt="VISTA Dataset Visualization" style="width: 100%; height: 200px; object-fit: cover;">
                                     <div class="preview-overlay">
                                         <a href="#" class="preview-link" onclick="showComingSoon()">
                                             <i class="fas fa-file-alt"></i>
@@ -766,8 +974,7 @@
                                     </div>
                                     <p class="preview-caption">VISTA: Action-Grounded Egocentric Dataset for Assistive AI</p>
                                 </div>
-                        </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
