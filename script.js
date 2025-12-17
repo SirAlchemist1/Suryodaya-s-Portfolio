@@ -634,14 +634,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check on scroll
     window.addEventListener('scroll', animateTimeline);
 
+    // About section flip-cards work via CSS hover - no JS needed
+
     const educationCards = document.querySelectorAll('.education-card');
 
     educationCards.forEach(card => {
-        card.addEventListener('click', () => {
-            card.querySelector('.card-inner').style.transform = 
-                card.querySelector('.card-inner').style.transform === 'rotateY(180deg)' 
-                    ? 'rotateY(0deg)' 
-                    : 'rotateY(180deg)';
+        const cardInner = card.querySelector('.card-inner');
+        let isFlipped = false;
+        
+        // Ensure all cards start unflipped (reset any existing state)
+        cardInner.style.transform = 'rotateY(0deg)';
+        cardInner.setAttribute('data-flipped', 'false');
+        
+        // Click handler to toggle flip
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isFlipped = !isFlipped;
+            cardInner.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+            cardInner.setAttribute('data-flipped', isFlipped.toString());
         });
     });
 

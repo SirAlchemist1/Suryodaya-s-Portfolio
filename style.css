@@ -2009,16 +2009,19 @@ h1, h2, h3 {
 
 .about-cards {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    padding: 0 1rem;
 }
 
 .flip-card {
     background-color: transparent;
-    width: calc(33.333% - 1.33rem);
-    height: 250px;
+    width: 300px;
+    min-width: 280px;
+    height: 280px;
     perspective: 1000px;
+    cursor: pointer;
 }
 
 .flip-card-inner {
@@ -2026,13 +2029,18 @@ h1, h2, h3 {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s;
+    -webkit-transition: -webkit-transform 0.8s ease;
+    transition: transform 0.8s ease;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 15px;
 }
 
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+    -webkit-transform: rotateY(180deg) !important;
+    transform: rotateY(180deg) !important;
 }
 
 .flip-card-front, .flip-card-back {
@@ -2047,12 +2055,13 @@ h1, h2, h3 {
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
+    box-sizing: border-box;
 }
 
 .flip-card-front {
     background-color: var(--card-bg);
     color: var(--text-primary);
-    box-shadow: 0 0 20px var(--shadow-color); /* Subtle glow effect */
+    box-shadow: 0 0 20px var(--shadow-color);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -2065,44 +2074,56 @@ h1, h2, h3 {
 
 .flip-card-front h3 {
     font-size: 1.5rem;
+    color: var(--text-primary);
 }
 
 .flip-card-back {
     background-color: var(--highlight-color);
-    color: white;
+    color: #ffffff;
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
-    box-shadow: 0 0 20px var(--shadow-color); /* Slightly stronger glow effect on back */
+    box-shadow: 0 0 20px var(--shadow-color);
     transition: background-color 0.3s ease;
 }
 
 .flip-card-back h4 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    color: #ffffff;
 }
 
 .flip-card-back p {
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    color: #ffffff;
 }
 
 .flip-card-back ul {
     text-align: left;
     padding-left: 1rem;
+    list-style: none;
 }
 
 .flip-card-back li {
     font-size: 0.85rem;
     margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.flip-card-back li strong {
+    color: #ffffff;
 }
 
 @media screen and (max-width: 1200px) {
     .about-cards {
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .flip-card {
-        width: calc(50% - 1rem);
-        margin-bottom: 2rem;
+        width: 280px;
+        min-width: 260px;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -2121,8 +2142,15 @@ h1, h2, h3 {
         text-align: center;
     }
 
+    .about-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .flip-card {
         width: 100%;
+        max-width: 320px;
+        height: 260px;
     }
 }
 
@@ -2668,9 +2696,7 @@ h1, h2, h3 {
     cursor: pointer;
 }
 
-.education-card:hover .card-inner {
-    transform: rotateY(180deg);
-}
+/* Removed hover flip to prevent conflicts with click toggle */
 
 .card-front, .card-back {
     position: absolute;
@@ -3763,12 +3789,13 @@ footer .social-icons a:hover svg {
 
 .publications-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
     position: relative;
     z-index: 2;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .publication-category {
@@ -3778,6 +3805,7 @@ footer .social-icons a:hover svg {
     border-radius: 15px;
     padding: 20px;
     transition: all 0.3s ease;
+    align-self: start;
 }
 
 .publication-category:hover {
